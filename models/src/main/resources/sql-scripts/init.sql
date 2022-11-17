@@ -1,0 +1,1 @@
+INSERT INTO product (title, brand, created, image_link, price) VALUES ('Moka', 'Žito', TIMESTAMP '2006-01-01 15:36:38', 'https://www.zito.si/cache/thumbs/5fdb4c9478957e0b8f400d90/0x0-none/3838700001068_Zito_posebna_bela_moka_T400_5kg.jpg.webp', 1);
