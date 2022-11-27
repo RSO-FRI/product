@@ -1,5 +1,5 @@
 kumuluzee:
-  name: image-catalog-service
+  name: product-service
   env:
     name: dev
   version: 1.0.0
