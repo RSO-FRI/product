@@ -1,43 +1,23 @@
-package si.fri.rso.samples.imagecatalog.models.entities;
+package si.fri.rso.lib;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-@Entity
-@Table(name = "product")
-@NamedQueries(value =
-        {
-                @NamedQuery(name = "ProductEntity.getAll",
-                        query = "SELECT pr FROM ProductEntity pr")
-        })
-public class ProductEntity {
+public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(name = "title")
+    private Integer productId;
     private String title;
-
-    @Column(name = "brand")
     private String brand;
-
-    @Column(name = "created")
     private Instant created;
-
-    @Column(name = "image_link")
     private String imageLink;
-
-    @Column(name = "price")
     private BigDecimal price;
 
-    public Integer getId() {
-        return id;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public String getTitle() {
@@ -68,8 +48,8 @@ public class ProductEntity {
         return imageLink;
     }
 
-    public void setImageLink(String image_link) {
-        this.imageLink = image_link;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     public BigDecimal getPrice() {

@@ -8,8 +8,8 @@ kumuluzee:
     http:
       port: 8080
   datasources:
-    - jndi-name: jdbc/ImageMetadataDS
-      connection-url: jdbc:postgresql://localhost:5432/image-metadata
+    - jndi-name: jdbc/ProductDS
+      connection-url: jdbc:postgresql://localhost:5432/product
       username: dbuser
       password: postgres
       max-pool-size: 20

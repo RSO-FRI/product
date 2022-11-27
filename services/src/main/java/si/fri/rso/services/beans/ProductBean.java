@@ -1,4 +1,4 @@
-package si.fri.rso.samples.imagecatalog.services.beans;
+package si.fri.rso.services.beans;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import si.fri.rso.samples.imagecatalog.lib.Product;
-import si.fri.rso.samples.imagecatalog.models.converters.ProductMetadataConverter;
-import si.fri.rso.samples.imagecatalog.models.entities.ProductEntity;
+import si.fri.rso.lib.Product;
+import si.fri.rso.models.converters.ProductConverter;
+import si.fri.rso.models.entities.ProductEntity;
 
 
 @RequestScoped
@@ -29,7 +29,7 @@ public class ProductBean {
 
         List<ProductEntity> resultList = query.getResultList();
 
-        return resultList.stream().map(ProductMetadataConverter::toDto).collect(Collectors.toList());
+        return resultList.stream().map(ProductConverter::toDto).collect(Collectors.toList());
 
     }
 
@@ -42,14 +42,14 @@ public class ProductBean {
             throw new NotFoundException();
         }
 
-        Product product = ProductMetadataConverter.toDto(productEntity);
+        Product product = ProductConverter.toDto(productEntity);
 
         return product;
     }
 
     public Product createProduct(Product product) {
 
-        ProductEntity productEntity = ProductMetadataConverter.toEntity(product);
+        ProductEntity productEntity = ProductConverter.toEntity(product);
 
         try {
             beginTx();
@@ -64,10 +64,10 @@ public class ProductBean {
             throw new RuntimeException("Entity was not persisted");
         }
 
-        return ProductMetadataConverter.toDto(productEntity);
+        return ProductConverter.toDto(productEntity);
     }
 
-    public Product putImageMetadata(Integer id, Product product) {
+    public Product putProduct(Integer id, Product product) {
 
         ProductEntity c = em.find(ProductEntity.class, id);
 
@@ -75,7 +75,7 @@ public class ProductBean {
             return null;
         }
 
-        ProductEntity updatedProductEntity = ProductMetadataConverter.toEntity(product);
+        ProductEntity updatedProductEntity = ProductConverter.toEntity(product);
 
         try {
             beginTx();
@@ -87,7 +87,7 @@ public class ProductBean {
             rollbackTx();
         }
 
-        return ProductMetadataConverter.toDto(updatedProductEntity);
+        return ProductConverter.toDto(updatedProductEntity);
     }
 
     public boolean deleteProduct(Integer id) {

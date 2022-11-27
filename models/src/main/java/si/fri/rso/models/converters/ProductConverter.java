@@ -1,9 +1,9 @@
-package si.fri.rso.samples.imagecatalog.models.converters;
+package si.fri.rso.models.converters;
 
-import si.fri.rso.samples.imagecatalog.lib.Product;
-import si.fri.rso.samples.imagecatalog.models.entities.ProductEntity;
+import si.fri.rso.models.entities.ProductEntity;
+import si.fri.rso.lib.Product;
 
-public class ProductMetadataConverter {
+public class ProductConverter {
 
     public static Product toDto(ProductEntity entity) {
 

@@ -1,4 +1,4 @@
-package si.fri.rso.samples.imagecatalog.api.v1.resources;
+package si.fri.rso.api.v1.resources;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
@@ -9,8 +9,8 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
-import si.fri.rso.samples.imagecatalog.lib.Product;
-import si.fri.rso.samples.imagecatalog.services.beans.ProductBean;
+import si.fri.rso.lib.Product;
+import si.fri.rso.services.beans.ProductBean;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -104,15 +104,15 @@ public class ProductResource {
     })
     @PUT
     @Path("{productId}")
-    public Response putImageMetadata(@Parameter(description = "Product data ID.", required = true)
+    public Response putProduct(@Parameter(description = "Product data ID.", required = true)
                                      @PathParam("productId") Integer productId,
-                                     @RequestBody(
+                               @RequestBody(
                                              description = "DTO object with product data.",
                                              required = true, content = @Content(
                                              schema = @Schema(implementation = Product.class)))
                                      Product product){
 
-        product = productBean.putImageMetadata(productId, product);
+        product = productBean.putProduct(productId, product);
 
         if (product == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -135,10 +135,10 @@ public class ProductResource {
     })
     @DELETE
     @Path("{productId}")
-    public Response deleteImageMetadata(@Parameter(description = "Product ID.", required = true)
-                                        @PathParam("productId") Integer imageMetadataId){
+    public Response deleteProduct(@Parameter(description = "Product ID.", required = true)
+                                        @PathParam("productId") Integer productId){
 
-        boolean deleted = productBean.deleteProduct(imageMetadataId);
+        boolean deleted = productBean.deleteProduct(productId);
 
         if (deleted) {
             return Response.status(Response.Status.NO_CONTENT).build();
